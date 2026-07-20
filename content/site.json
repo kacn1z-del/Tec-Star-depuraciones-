@@ -1,0 +1,65 @@
+{
+  "logo": "/logo.png",
+  "hero_lead": "Mantenimiento preventivo, correctivo y especializado para plantas de tratamiento de aguas residuales, con respuesta técnica rápida y cumplimiento normativo garantizado.",
+  "intro_p1": "En TEC-STAR Depuraciones ofrecemos servicios profesionales de mantenimiento preventivo y correctivo para plantas de tratamiento de aguas residuales, garantizando el funcionamiento eficiente, seguro y continuo de sus sistemas — desde la inspección diaria hasta la atención de emergencias.",
+  "intro_p2": "Trabajamos con altos estándares técnicos para que su planta opere de forma eficiente, cumpliendo con las normativas ambientales y protegiendo el recurso hídrico.",
+  "phone": "8639-4366",
+  "whatsapp": "50686394366",
+  "email": "abarahona.abv@gmail.com",
+  "contact_name": "Alejandro Barahona Vargas",
+  "address": "San José, Moravia — Costa Rica",
+  "footer_tag": "Soluciones eficientes para el tratamiento de aguas residuales.",
+  "services": [
+    {
+      "tag": "01 · Rutina programada",
+      "title": "Mantenimiento preventivo",
+      "items": [
+        "Inspección general de equipos y sistemas",
+        "Limpieza de tanques, rejillas y tuberías",
+        "Revisión de bombas, sopladores y motores",
+        "Control y ajuste de parámetros operativos",
+        "Lubricación y calibración de equipos",
+        "Prevención de fallas y reducción de costos"
+      ]
+    },
+    {
+      "tag": "02 · Atención a fallas",
+      "title": "Mantenimiento correctivo",
+      "items": [
+        "Reparación de averías y fallas mecánicas",
+        "Sustitución de componentes dañados",
+        "Solución de fugas y obstrucciones",
+        "Diagnóstico técnico especializado",
+        "Recuperación y optimización del sistema"
+      ]
+    },
+    {
+      "tag": "03 · Soporte técnico",
+      "title": "Servicios complementarios",
+      "items": [
+        "Asesoría técnica profesional",
+        "Supervisión operativa de plantas",
+        "Mejoramiento de eficiencia del tratamiento",
+        "Atención rápida y personalizada",
+        "Programas de mantenimiento periódico"
+      ]
+    },
+    {
+      "tag": "04 · Cumplimiento",
+      "title": "Servicios especializados",
+      "items": [
+        "Análisis de laboratorio de aguas residuales",
+        "Refrendo de Colegio de Químicos",
+        "Elaboración y presentación de reporte operacional de aguas residuales al Ministerio de Salud"
+      ]
+    }
+  ],
+  "why": [
+    { "title": "Atención profesional y confiable", "text": "Equipo técnico certificado con experiencia directa en operación de plantas." },
+    { "title": "Respuesta rápida ante emergencias", "text": "Intervención inmediata para minimizar tiempos de parada operativa." },
+    { "title": "Reducción de riesgos operativos", "text": "Diagnóstico continuo que anticipa fallas antes de que ocurran." },
+    { "title": "Mayor vida útil de los equipos", "text": "Programas de mantenimiento que extienden el rendimiento de sus activos." },
+    { "title": "Optimización del rendimiento", "text": "Ajustes técnicos que elevan la eficiencia de todo el sistema." },
+    { "title": "Compromiso con el medio ambiente", "text": "Protección activa del recurso hídrico en cada intervención." }
+  ]
+}
