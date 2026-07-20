@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEC-STAR Depuraciones — Mantenimiento de Plantas de Tratamiento de Aguas Residuales</title>
+<meta name="description" content="TEC-STAR Depuraciones: mantenimiento preventivo, correctivo y especializado de plantas de tratamiento de aguas residuales en Costa Rica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#071B33;
+    --navy:#0B2E4F;
+    --teal:#0F7A82;
+    --teal-light:#35A9A6;
+    --aqua-mist:#DCEEEC;
+    --paper:#F6F8F8;
+    --ink:#16242B;
+    --ink-soft:#4A5C63;
+    --amber:#E8A33D;
+    --line:rgba(11,46,79,0.12);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  :focus-visible{outline:2px solid var(--teal-light);outline-offset:3px;}
+
+  /* ===== NAV ===== */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(7,27,51,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1180px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:10px;color:#fff;}
+  .logo-badge{
+    background:#fff;border-radius:8px;padding:6px 12px;display:flex;align-items:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.18);
+  }
+  .logo-badge img{height:26px;width:auto;display:block;}
+  .brand-mark{width:34px;height:34px;flex:none;}
+  .brand-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;line-height:1;color:#fff;}
+  .brand-text span{display:block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.18em;color:var(--teal-light);margin-top:3px;font-weight:500;}
+  nav.links{display:flex;gap:28px;}
+  nav.links a{color:#DCE8EA;font-size:.88rem;font-weight:500;transition:color .2s;}
+  nav.links a:hover{color:#fff;}
+  .nav-cta{
+    background:var(--teal);color:#fff;padding:9px 18px;border-radius:999px;
+    font-size:.85rem;font-weight:600;white-space:nowrap;
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--teal-light);}
+  .nav-toggle{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:radial-gradient(120% 140% at 15% 0%,#0F3A5C 0%,var(--navy) 42%,var(--navy-deep) 100%);
+    color:#fff;
+    overflow:hidden;
+    padding:96px 0 120px;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 64px);
+    mask-image:radial-gradient(70% 60% at 30% 30%, black, transparent 75%);
+    pointer-events:none;
+  }
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.72rem;color:var(--teal-light);margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(232,163,61,0.18);}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.08;font-weight:700;max-width:14ch;}
+  .hero h1 em{font-style:normal;color:var(--teal-light);}
+  .hero p.lead{margin-top:22px;font-size:1.08rem;line-height:1.65;color:#C7D6DA;max-width:46ch;}
+  .hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:10px;
+    font-weight:600;font-size:.94rem;transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{background:var(--teal);color:#fff;box-shadow:0 8px 24px -8px rgba(15,122,130,0.7);}
+  .btn-primary:hover{background:var(--teal-light);transform:translateY(-1px);}
+  .btn-ghost{border:1px solid rgba(255,255,255,0.28);color:#fff;}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.06);}
+
+  /* hero diagram: schematic tank + flow */
+  .hero-diagram{position:relative;aspect-ratio:1/1;max-width:420px;justify-self:center;}
+  .hero-diagram svg{width:100%;height:100%;}
+  .flow-path{stroke-dasharray:6 10;animation:flow 2.6s linear infinite;}
+  @keyframes flow{to{stroke-dashoffset:-32;}}
+  .pulse-ring{animation:pulse 2.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.35;}50%{opacity:.9;}}
+  @media (prefers-reduced-motion:reduce){
+    .flow-path{animation:none;}
+    .pulse-ring{animation:none;opacity:.6;}
+  }
+
+  /* ===== SECTION HEADS ===== */
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head .mono{color:var(--teal);font-size:.72rem;font-weight:600;}
+  .section-head h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-top:12px;line-height:1.2;}
+  .section-head p{color:var(--ink-soft);margin-top:14px;font-size:1.02rem;line-height:1.6;}
+
+  .intro{background:#fff;}
+  .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .intro-copy p{font-size:1.06rem;line-height:1.75;color:var(--ink-soft);}
+  .intro-copy p strong{color:var(--navy);}
+  .stat-row{display:flex;gap:28px;margin-top:32px;flex-wrap:wrap;}
+  .stat{border-left:2px solid var(--teal);padding-left:14px;}
+  .stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.6rem;color:var(--navy);}
+  .stat span{font-size:.78rem;color:var(--ink-soft);}
+
+  /* schematic loop for intro */
+  .loop-diagram{border:1px solid var(--line);border-radius:20px;padding:28px;background:linear-gradient(180deg,#F2F8F8,#fff);}
+  .loop-diagram svg{width:100%;height:auto;}
+
+  /* ===== SERVICES ===== */
+  .services{background:var(--navy-deep);color:#fff;position:relative;}
+  .services .section-head p{color:#AEC1C5;}
+  .services .section-head .mono{color:var(--teal-light);}
+  .service-rail{position:relative;}
+  .service-rail::before{
+    content:"";position:absolute;left:27px;top:14px;bottom:14px;width:2px;
+    background:repeating-linear-gradient(180deg,rgba(53,169,166,.6) 0 8px, transparent 8px 16px);
+  }
+  .service-item{
+    position:relative;display:grid;grid-template-columns:56px 1fr;gap:24px;
+    padding:34px 0;border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .service-item:last-child{border-bottom:none;}
+  .service-node{
+    width:56px;height:56px;border-radius:50%;
+    background:rgba(53,169,166,0.12);border:1px solid rgba(53,169,166,0.4);
+    display:flex;align-items:center;justify-content:center;position:relative;z-index:2;
+  }
+  .service-node svg{width:24px;height:24px;stroke:var(--teal-light);}
+  .service-item h3{font-size:1.2rem;font-weight:600;color:#fff;}
+  .service-item .tag{font-size:.68rem;color:var(--teal-light);margin-bottom:6px;display:block;}
+  .service-list{margin:16px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;}
+  .service-list li{font-size:.92rem;color:#C7D6DA;line-height:1.5;padding-left:16px;position:relative;}
+  .service-list li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:2px;background:var(--teal-light);}
+
+  /* ===== WHY ===== */
+  .why{background:var(--aqua-mist);}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .why-item{background:#fff;padding:30px 24px;}
+  .why-item svg{width:26px;height:26px;stroke:var(--teal);margin-bottom:16px;}
+  .why-item h3{font-size:1rem;font-weight:600;color:var(--navy);}
+  .why-item p{font-size:.86rem;color:var(--ink-soft);margin-top:8px;line-height:1.5;}
+
+  /* ===== COMMITMENT BAND ===== */
+  .band{background:var(--navy);color:#fff;padding:56px 0;}
+  .band .wrap{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;}
+  .band svg{width:44px;height:44px;stroke:var(--teal-light);flex:none;}
+  .band p{font-size:1.02rem;line-height:1.65;color:#D4E1E4;max-width:70ch;}
+  .band p strong{color:#fff;}
+
+  /* ===== CONTACT ===== */
+  .contact{background:#fff;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  .contact-card{
+    background:var(--navy-deep);color:#fff;border-radius:20px;padding:40px;
+    position:relative;overflow:hidden;
+  }
+  .contact-card::after{
+    content:"";position:absolute;right:-40px;bottom:-40px;width:180px;height:180px;
+    border:1px solid rgba(53,169,166,0.35);border-radius:50%;
+  }
+  .contact-card h3{font-size:1.3rem;font-weight:600;margin-bottom:22px;}
+  .contact-row{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-top:1px solid rgba(255,255,255,0.08);}
+  .contact-row:first-of-type{border-top:none;}
+  .contact-row svg{width:19px;height:19px;stroke:var(--teal-light);flex:none;margin-top:2px;}
+  .contact-row a, .contact-row span{font-size:.94rem;color:#DCE8EA;line-height:1.5;}
+  .contact-row a:hover{color:#fff;text-decoration:underline;}
+  .contact-form-note{align-self:center;}
+  .contact-form-note .mono{color:var(--teal);font-size:.72rem;font-weight:600;}
+  .contact-form-note h2{margin-top:12px;font-size:1.7rem;}
+  .contact-form-note p{color:var(--ink-soft);margin-top:14px;line-height:1.65;}
+  .sector-tags{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;}
+  .sector-tags span{
+    font-size:.76rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em;
+    border:1px solid var(--line);padding:6px 12px;border-radius:999px;color:var(--navy);
+  }
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--navy-deep);color:#8FA3A8;padding:34px 0;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+  .footer-row .brand-text{color:#fff;font-size:.95rem;}
+  .footer-row .brand-text span{color:var(--teal-light);}
+  footer p.tag{font-size:.82rem;}
+
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-diagram{order:-1;max-width:280px;}
+    .intro-grid,.contact-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .service-list{grid-template-columns:1fr;}
+    nav.links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <div class="brand">
+      <div class="logo-badge"><img class="cms-logo" src="logo.png" alt="TEC-STAR Depuraciones"></div>
+    </div>
+    <nav class="links">
+      <a href="#servicios">Servicios</a>
+      <a href="#por-que">Por qué elegirnos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="nav-cta" id="nav-phone" href="tel:+50686394366">Llamar ahora</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow mono"><span class="dot"></span>Mantenimiento de PTAR · Costa Rica</div>
+      <h1>Plantas de tratamiento que <em>nunca</em> se detienen.</h1>
+      <p class="lead" id="hero-lead">Mantenimiento preventivo, correctivo y especializado para plantas de tratamiento de aguas residuales, con respuesta técnica rápida y cumplimiento normativo garantizado.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" id="hero-whatsapp" href="https://wa.me/50686394366" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+      </div>
+    </div>
+    <div class="hero-diagram">
+      <svg viewBox="0 0 300 300" fill="none">
+        <circle cx="150" cy="150" r="110" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <circle class="pulse-ring" cx="150" cy="150" r="86" stroke="rgba(53,169,166,0.35)" stroke-width="1"/>
+        <circle cx="150" cy="150" r="60" stroke="#35A9A6" stroke-width="1.5"/>
+        <circle cx="150" cy="150" r="60" stroke="#fff" stroke-width="8" stroke-dasharray="14 10" stroke-linecap="round" opacity="0.9" class="flow-path"/>
+        <path d="M150 90 V60 M150 210 V240 M90 150 H60 M210 150 H240" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="150" cy="150" r="8" fill="#35A9A6"/>
+        <text x="150" y="155" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#0B2E4F" opacity="0">PTAR</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div class="intro-copy">
+      <div class="section-head" style="margin-bottom:20px;">
+        <span class="mono">Quiénes somos</span>
+        <h2>Especialistas en el ciclo completo de tratamiento de aguas residuales.</h2>
+      </div>
+      <p id="intro-p1">En <strong>TEC-STAR Depuraciones</strong> ofrecemos servicios profesionales de mantenimiento preventivo y correctivo para plantas de tratamiento de aguas residuales, garantizando el funcionamiento eficiente, seguro y continuo de sus sistemas — desde la inspección diaria hasta la atención de emergencias.</p>
+      <p id="intro-p2">Trabajamos con altos estándares técnicos para que su planta opere de forma eficiente, cumpliendo con las normativas ambientales y protegiendo el recurso hídrico.</p>
+      <div class="stat-row">
+        <div class="stat"><b>Preventivo</b><span>+ Correctivo</span></div>
+        <div class="stat"><b>24/7</b><span>Atención a fallas</span></div>
+        <div class="stat"><b>Min. Salud</b><span>Reporte operacional</span></div>
+      </div>
+    </div>
+    <div class="loop-diagram">
+      <svg viewBox="0 0 360 260" fill="none">
+        <rect x="20" y="30" width="90" height="60" rx="6" stroke="#0B2E4F" stroke-width="1.5"/>
+        <text x="65" y="65" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#0B2E4F">ENTRADA</text>
+        <path d="M110 60 H160" stroke="#0F7A82" stroke-width="2" stroke-dasharray="5 6" class="flow-path"/>
+        <circle cx="185" cy="60" r="26" stroke="#0F7A82" stroke-width="1.5"/>
+        <text x="185" y="64" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#0F7A82">PTAR</text>
+        <path d="M185 86 V130" stroke="#0F7A82" stroke-width="2" stroke-dasharray="5 6" class="flow-path"/>
+        <rect x="140" y="130" width="90" height="55" rx="6" stroke="#0B2E4F" stroke-width="1.5"/>
+        <text x="185" y="162" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#0B2E4F">ANÁLISIS</text>
+        <path d="M140 158 H70" stroke="#0F7A82" stroke-width="2" stroke-dasharray="5 6" class="flow-path"/>
+        <rect x="20" y="130" width="50" height="55" rx="6" stroke="#35A9A6" stroke-width="1.5" fill="#DCEEEC"/>
+        <text x="45" y="155" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#0B2E4F">SALIDA</text>
+        <text x="45" y="168" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#0B2E4F">SEGURA</text>
+        <path d="M230 158 H300" stroke="#0F7A82" stroke-width="2" stroke-dasharray="5 6" class="flow-path"/>
+        <rect x="300" y="130" width="45" height="55" rx="6" stroke="#0B2E4F" stroke-width="1.5"/>
+        <text x="322" y="155" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#0B2E4F">MIN.</text>
+        <text x="322" y="168" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#0B2E4F">SALUD</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Nuestros servicios</span>
+      <h2>Cuatro frentes, un mismo objetivo: cero interrupciones.</h2>
+      <p>Cubrimos todo el ciclo de vida operativo de su planta, desde la inspección de rutina hasta el respaldo técnico ante el Ministerio de Salud.</p>
+    </div>
+
+    <div class="service-rail">
+      <div class="service-item">
+        <div class="service-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>
+        </div>
+        <div>
+          <span class="tag mono" id="svc-1-tag">01 · Rutina programada</span>
+          <h3 id="svc-1-title">Mantenimiento preventivo</h3>
+          <ul class="service-list" id="svc-1-list">
+            <li>Inspección general de equipos y sistemas</li>
+            <li>Limpieza de tanques, rejillas y tuberías</li>
+            <li>Revisión de bombas, sopladores y motores</li>
+            <li>Control y ajuste de parámetros operativos</li>
+            <li>Lubricación y calibración de equipos</li>
+            <li>Prevención de fallas y reducción de costos</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 10-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 005.4-5.4l-2.1 2.1a2 2 0 01-2.8-2.8z"/></svg>
+        </div>
+        <div>
+          <span class="tag mono" id="svc-2-tag">02 · Atención a fallas</span>
+          <h3 id="svc-2-title">Mantenimiento correctivo</h3>
+          <ul class="service-list" id="svc-2-list">
+            <li>Reparación de averías y fallas mecánicas</li>
+            <li>Sustitución de componentes dañados</li>
+            <li>Solución de fugas y obstrucciones</li>
+            <li>Diagnóstico técnico especializado</li>
+            <li>Recuperación y optimización del sistema</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v4H9z"/><path d="M9 7H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-3"/><path d="M9 13h6M9 17h6"/></svg>
+        </div>
+        <div>
+          <span class="tag mono" id="svc-3-tag">03 · Soporte técnico</span>
+          <h3 id="svc-3-title">Servicios complementarios</h3>
+          <ul class="service-list" id="svc-3-list">
+            <li>Asesoría técnica profesional</li>
+            <li>Supervisión operativa de plantas</li>
+            <li>Mejoramiento de eficiencia del tratamiento</li>
+            <li>Atención rápida y personalizada</li>
+            <li>Programas de mantenimiento periódico</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6L4 20a1 1 0 001 2h14a1 1 0 001-2L15 8V2"/><path d="M9 2h6"/><path d="M8 15h8"/></svg>
+        </div>
+        <div>
+          <span class="tag mono" id="svc-4-tag">04 · Cumplimiento</span>
+          <h3 id="svc-4-title">Servicios especializados</h3>
+          <ul class="service-list" id="svc-4-list">
+            <li>Análisis de laboratorio de aguas residuales</li>
+            <li>Refrendo de Colegio de Químicos</li>
+            <li>Elaboración y presentación de reporte operacional de aguas residuales al Ministerio de Salud</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="por-que">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">Por qué elegir TEC-STAR</span>
+      <h2>Confianza técnica, respaldada por resultados.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/></svg>
+        <h3 id="why-1-title">Atención profesional y confiable</h3>
+        <p id="why-1-text">Equipo técnico certificado con experiencia directa en operación de plantas.</p>
+      </div>
+      <div class="why-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h3 id="why-2-title">Respuesta rápida ante emergencias</h3>
+        <p id="why-2-text">Intervención inmediata para minimizar tiempos de parada operativa.</p>
+      </div>
+      <div class="why-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+        <h3 id="why-3-title">Reducción de riesgos operativos</h3>
+        <p id="why-3-text">Diagnóstico continuo que anticipa fallas antes de que ocurran.</p>
+      </div>
+      <div class="why-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3.2-6.9"/><path d="M21 3v6h-6"/></svg>
+        <h3 id="why-4-title">Mayor vida útil de los equipos</h3>
+        <p id="why-4-text">Programas de mantenimiento que extienden el rendimiento de sus activos.</p>
+      </div>
+      <div class="why-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="4"/></svg>
+        <h3 id="why-5-title">Optimización del rendimiento</h3>
+        <p id="why-5-text">Ajustes técnicos que elevan la eficiencia de todo el sistema.</p>
+      </div>
+      <div class="why-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-11a7 7 0 0114 0c0 6.5-7 11-7 11z"/><path d="M12 8v6M9 11h6"/></svg>
+        <h3 id="why-6-title">Compromiso con el medio ambiente</h3>
+        <p id="why-6-text">Protección activa del recurso hídrico en cada intervención.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <div class="wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 6-6 8-6 14a6 6 0 0012 0c0-6-6-8-6-14z"/></svg>
+    <p>Trabajamos con <strong>altos estándares técnicos</strong> para asegurar que su planta opere de manera eficiente, cumpliendo con las normativas ambientales y contribuyendo a la protección del recurso hídrico.</p>
+  </div>
+</div>
+
+<section class="contact" id="contacto">
+  <div class="wrap contact-grid">
+    <div class="contact-form-note">
+      <span class="mono">Contáctenos</span>
+      <h2>Hablemos de su planta.</h2>
+      <p>Especialistas en mantenimiento preventivo y correctivo de plantas de tratamiento de aguas residuales. Servicio para industrias, comercios y residencias.</p>
+      <div class="sector-tags">
+        <span>Industrias</span>
+        <span>Comercios</span>
+        <span>Residencias</span>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <h3>TEC-STAR Depuraciones</h3>
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 2 .7 3a2 2 0 01-.4 2.1L8.1 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c1 .4 2 .6 3 .7a2 2 0 011.7 2z"/></svg>
+        <a id="contact-phone" href="tel:+50686394366">8639-4366</a>
+      </div>
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>
+        <a id="contact-email" href="mailto:abarahona.abv@gmail.com">abarahona.abv@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        <span id="contact-name">Contacto: Alejandro Barahona Vargas</span>
+      </div>
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="contact-address">San José, Moravia — Costa Rica</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="logo-badge"><img class="cms-logo" src="logo.png" alt="TEC-STAR Depuraciones"></div>
+    <p class="tag" id="footer-tag">Soluciones eficientes para el tratamiento de aguas residuales.</p>
+  </div>
+</footer>
+
+<script>
+/* Carga el contenido editable desde content/site.json (editado vía /admin) */
+fetch('content/site.json?_=' + Date.now())
+  .then(function(r){ return r.ok ? r.json() : null; })
+  .then(function(d){
+    if(!d) return;
+    var setText = function(id, val){ var el = document.getElementById(id); if(el && val) el.textContent = val; };
+    var setHref = function(id, val, prefix){ var el = document.getElementById(id); if(el && val) el.setAttribute('href', (prefix||'') + val); };
+
+    if(d.logo){
+      document.querySelectorAll('.cms-logo').forEach(function(img){ img.src = d.logo; });
+    }
+    setText('hero-lead', d.hero_lead);
+    setText('intro-p1', d.intro_p1);
+    setText('intro-p2', d.intro_p2);
+    setText('footer-tag', d.footer_tag);
+
+    if(d.phone){
+      var digits = d.phone.replace(/[^0-9+]/g,'');
+      setText('contact-phone', d.phone);
+      setHref('contact-phone', digits, 'tel:');
+      setHref('nav-phone', digits, 'tel:');
+      setText('nav-phone', 'Llamar ahora');
+    }
+    if(d.whatsapp){
+      setHref('hero-whatsapp', d.whatsapp.replace(/[^0-9]/g,''), 'https://wa.me/');
+    }
+    setText('contact-email', d.email);
+    setHref('contact-email', d.email, 'mailto:');
+    if(d.contact_name) setText('contact-name', 'Contacto: ' + d.contact_name);
+    setText('contact-address', d.address);
+
+    (d.services || []).forEach(function(s, i){
+      var n = i + 1;
+      setText('svc-' + n + '-tag', s.tag);
+      setText('svc-' + n + '-title', s.title);
+      var ul = document.getElementById('svc-' + n + '-list');
+      if(ul && s.items && s.items.length){
+        ul.innerHTML = '';
+        s.items.forEach(function(item){
+          var li = document.createElement('li');
+          li.textContent = item;
+          ul.appendChild(li);
+        });
+      }
+    });
+
+    (d.why || []).forEach(function(w, i){
+      var n = i + 1;
+      setText('why-' + n + '-title', w.title);
+      setText('why-' + n + '-text', w.text);
+    });
+  })
+  .catch(function(){ /* si no hay content/site.json, se muestra el contenido original */ });
+</script>
+
+</body>
+</html>
