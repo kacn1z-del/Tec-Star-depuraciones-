@@ -1,0 +1,41 @@
+backend:
+  name: github
+  repo: TU-USUARIO/TU-REPOSITORIO   # <-- cambiar por "usuario/nombre-del-repo" en GitHub
+  branch: main                      # <-- cambiar si tu rama principal se llama distinto
+  base_url: https://TU-SITIO.vercel.app   # <-- cambiar por la URL real de Vercel
+  auth_endpoint: api/auth
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "contenido"
+    label: "Contenido del sitio"
+    files:
+      - file: "content/site.json"
+        label: "Textos e imágenes generales"
+        name: "site"
+        fields:
+          - { label: "Logo", name: "logo", widget: "image" }
+          - { label: "Texto principal (hero)", name: "hero_lead", widget: "text" }
+          - { label: "Párrafo 1 (Quiénes somos)", name: "intro_p1", widget: "text" }
+          - { label: "Párrafo 2 (Quiénes somos)", name: "intro_p2", widget: "text" }
+          - { label: "Teléfono", name: "phone", widget: "string" }
+          - { label: "WhatsApp (solo números, con código de país)", name: "whatsapp", widget: "string" }
+          - { label: "Correo", name: "email", widget: "string" }
+          - { label: "Nombre de contacto", name: "contact_name", widget: "string" }
+          - { label: "Dirección", name: "address", widget: "string" }
+          - { label: "Texto del pie de página", name: "footer_tag", widget: "string" }
+          - label: "Servicios (4 bloques)"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Etiqueta (ej. 01 · Rutina programada)", name: "tag", widget: "string" }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Lista de puntos", name: "items", widget: "list" }
+          - label: "Por qué elegirnos (6 bloques)"
+            name: "why"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Texto", name: "text", widget: "string" }
