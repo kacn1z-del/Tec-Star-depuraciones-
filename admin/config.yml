@@ -1,8 +1,8 @@
 backend:
   name: github
-  repo: TU-USUARIO/TU-REPOSITORIO   # <-- cambiar por "usuario/nombre-del-repo" en GitHub
+  repo: Kacn1z-del/Tec-Star-depuraciones-
   branch: main                      # <-- cambiar si tu rama principal se llama distinto
-  base_url: https://TU-SITIO.vercel.app   # <-- cambiar por la URL real de Vercel
+  base_url: https://tec-star-depuraciones-a1v1.vercel.app
   auth_endpoint: api/auth
 
 media_folder: "images"
