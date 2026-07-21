@@ -49,65 +49,64 @@
   /* ===== NAV ===== */
   header.site{
     position:sticky;top:0;z-index:50;
-    background:rgba(7,27,51,0.92);
+    background:rgba(255,255,255,0.94);
     backdrop-filter:blur(8px);
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    border-bottom:1px solid var(--line);
   }
   .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1180px;margin:0 auto;}
-  .brand{display:flex;align-items:center;gap:10px;color:#fff;}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--navy);}
   .logo-badge{
-    background:#fff;border-radius:8px;padding:6px 12px;display:flex;align-items:center;
-    box-shadow:0 2px 10px rgba(0,0,0,0.18);
+    display:flex;align-items:center;
   }
-  .logo-badge img{height:26px;width:auto;display:block;}
+  .logo-badge img{height:34px;width:auto;display:block;}
   .brand-mark{width:34px;height:34px;flex:none;}
-  .brand-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;line-height:1;color:#fff;}
-  .brand-text span{display:block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.18em;color:var(--teal-light);margin-top:3px;font-weight:500;}
+  .brand-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;line-height:1;color:var(--navy);}
+  .brand-text span{display:block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.18em;color:var(--teal);margin-top:3px;font-weight:500;}
   nav.links{display:flex;gap:28px;}
-  nav.links a{color:#DCE8EA;font-size:.88rem;font-weight:500;transition:color .2s;}
-  nav.links a:hover{color:#fff;}
+  nav.links a{color:var(--ink-soft);font-size:.88rem;font-weight:500;transition:color .2s;}
+  nav.links a:hover{color:var(--navy);}
   .nav-cta{
     background:var(--teal);color:#fff;padding:9px 18px;border-radius:999px;
     font-size:.85rem;font-weight:600;white-space:nowrap;
     transition:background .2s;
   }
-  .nav-cta:hover{background:var(--teal-light);}
+  .nav-cta:hover{background:var(--navy);}
   .nav-toggle{display:none;}
 
   /* ===== HERO ===== */
   .hero{
     position:relative;
-    background:radial-gradient(120% 140% at 15% 0%,#0F3A5C 0%,var(--navy) 42%,var(--navy-deep) 100%);
-    color:#fff;
+    background:var(--paper);
+    color:var(--ink);
     overflow:hidden;
-    padding:96px 0 120px;
+    padding:96px 0 100px;
   }
   .hero::before{
     content:"";position:absolute;inset:0;
     background-image:
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 64px),
-      repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 64px);
-    mask-image:radial-gradient(70% 60% at 30% 30%, black, transparent 75%);
+      repeating-linear-gradient(90deg, rgba(11,46,79,0.05) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(0deg, rgba(11,46,79,0.05) 0 1px, transparent 1px 64px);
+    mask-image:radial-gradient(70% 60% at 30% 0%, black, transparent 75%);
     pointer-events:none;
   }
   .hero-grid{position:relative;display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;}
   .eyebrow{
     display:inline-flex;align-items:center;gap:8px;
-    font-size:.72rem;color:var(--teal-light);margin-bottom:22px;
+    font-size:.72rem;color:var(--teal);margin-bottom:22px;
   }
   .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(232,163,61,0.18);}
-  .hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.08;font-weight:700;max-width:14ch;}
-  .hero h1 em{font-style:normal;color:var(--teal-light);}
-  .hero p.lead{margin-top:22px;font-size:1.08rem;line-height:1.65;color:#C7D6DA;max-width:46ch;}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.08;font-weight:700;max-width:16ch;color:var(--navy-deep);}
+  .hero h1 em{font-style:normal;color:var(--teal);}
+  .hero p.lead{margin-top:22px;font-size:1.08rem;line-height:1.65;color:var(--ink-soft);max-width:46ch;}
   .hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
   .btn{
     display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:10px;
     font-weight:600;font-size:.94rem;transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
   }
-  .btn-primary{background:var(--teal);color:#fff;box-shadow:0 8px 24px -8px rgba(15,122,130,0.7);}
-  .btn-primary:hover{background:var(--teal-light);transform:translateY(-1px);}
-  .btn-ghost{border:1px solid rgba(255,255,255,0.28);color:#fff;}
-  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.06);}
+  .btn-primary{background:var(--teal);color:#fff;box-shadow:0 8px 24px -8px rgba(20,184,232,0.55);}
+  .btn-primary:hover{background:var(--navy);transform:translateY(-1px);}
+  .btn-ghost{border:1px solid var(--line);color:var(--navy);}
+  .btn-ghost:hover{border-color:var(--navy);background:rgba(11,46,79,0.04);}
 
   /* hero diagram: schematic tank + flow */
   .hero-diagram{position:relative;max-width:420px;justify-self:center;display:flex;align-items:center;}
@@ -142,30 +141,30 @@
   .loop-diagram svg{width:100%;height:auto;}
 
   /* ===== SERVICES ===== */
-  .services{background:var(--navy-deep);color:#fff;position:relative;}
-  .services .section-head p{color:#AEC1C5;}
-  .services .section-head .mono{color:var(--teal-light);}
+  .services{background:var(--paper);color:var(--ink);position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .services .section-head p{color:var(--ink-soft);}
+  .services .section-head .mono{color:var(--teal);}
   .service-rail{position:relative;}
   .service-rail::before{
     content:"";position:absolute;left:27px;top:14px;bottom:14px;width:2px;
-    background:repeating-linear-gradient(180deg,rgba(53,169,166,.6) 0 8px, transparent 8px 16px);
+    background:repeating-linear-gradient(180deg,rgba(20,184,232,.5) 0 8px, transparent 8px 16px);
   }
   .service-item{
     position:relative;display:grid;grid-template-columns:56px 1fr;gap:24px;
-    padding:34px 0;border-bottom:1px solid rgba(255,255,255,0.08);
+    padding:34px 0;border-bottom:1px solid var(--line);
   }
   .service-item:last-child{border-bottom:none;}
   .service-node{
     width:56px;height:56px;border-radius:50%;
-    background:rgba(53,169,166,0.12);border:1px solid rgba(53,169,166,0.4);
+    background:var(--aqua-mist);border:1px solid rgba(20,184,232,0.35);
     display:flex;align-items:center;justify-content:center;position:relative;z-index:2;
   }
-  .service-node svg{width:24px;height:24px;stroke:var(--teal-light);}
-  .service-item h3{font-size:1.2rem;font-weight:600;color:#fff;}
-  .service-item .tag{font-size:.68rem;color:var(--teal-light);margin-bottom:6px;display:block;}
+  .service-node svg{width:24px;height:24px;stroke:var(--teal);}
+  .service-item h3{font-size:1.2rem;font-weight:600;color:var(--navy-deep);}
+  .service-item .tag{font-size:.68rem;color:var(--teal);margin-bottom:6px;display:block;}
   .service-list{margin:16px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;}
-  .service-list li{font-size:.92rem;color:#C7D6DA;line-height:1.5;padding-left:16px;position:relative;}
-  .service-list li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:2px;background:var(--teal-light);}
+  .service-list li{font-size:.92rem;color:var(--ink-soft);line-height:1.5;padding-left:16px;position:relative;}
+  .service-list li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:2px;background:var(--teal);}
 
   /* ===== WHY ===== */
   .why{background:var(--aqua-mist);}
@@ -176,29 +175,30 @@
   .why-item p{font-size:.86rem;color:var(--ink-soft);margin-top:8px;line-height:1.5;}
 
   /* ===== COMMITMENT BAND ===== */
-  .band{background:var(--navy);color:#fff;padding:56px 0;}
+  .band{background:var(--aqua-mist);color:var(--navy-deep);padding:56px 0;}
   .band .wrap{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;}
-  .band svg{width:44px;height:44px;stroke:var(--teal-light);flex:none;}
-  .band p{font-size:1.02rem;line-height:1.65;color:#D4E1E4;max-width:70ch;}
-  .band p strong{color:#fff;}
+  .band svg{width:44px;height:44px;stroke:var(--teal);flex:none;}
+  .band p{font-size:1.02rem;line-height:1.65;color:var(--navy-deep);max-width:70ch;}
+  .band p strong{color:var(--navy-deep);}
 
   /* ===== CONTACT ===== */
   .contact{background:#fff;}
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
   .contact-card{
-    background:var(--navy-deep);color:#fff;border-radius:20px;padding:40px;
+    background:var(--paper);color:var(--ink);border-radius:20px;padding:40px;
+    border:1px solid var(--line);
     position:relative;overflow:hidden;
   }
   .contact-card::after{
     content:"";position:absolute;right:-40px;bottom:-40px;width:180px;height:180px;
-    border:1px solid rgba(53,169,166,0.35);border-radius:50%;
+    border:1px solid rgba(20,184,232,0.3);border-radius:50%;
   }
-  .contact-card h3{font-size:1.3rem;font-weight:600;margin-bottom:22px;}
-  .contact-row{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-top:1px solid rgba(255,255,255,0.08);}
+  .contact-card h3{font-size:1.3rem;font-weight:600;margin-bottom:22px;color:var(--navy-deep);}
+  .contact-row{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line);}
   .contact-row:first-of-type{border-top:none;}
-  .contact-row svg{width:19px;height:19px;stroke:var(--teal-light);flex:none;margin-top:2px;}
-  .contact-row a, .contact-row span{font-size:.94rem;color:#DCE8EA;line-height:1.5;}
-  .contact-row a:hover{color:#fff;text-decoration:underline;}
+  .contact-row svg{width:19px;height:19px;stroke:var(--teal);flex:none;margin-top:2px;}
+  .contact-row a, .contact-row span{font-size:.94rem;color:var(--ink-soft);line-height:1.5;}
+  .contact-row a:hover{color:var(--navy);text-decoration:underline;}
   .contact-form-note{align-self:center;}
   .contact-form-note .mono{color:var(--teal);font-size:.72rem;font-weight:600;}
   .contact-form-note h2{margin-top:12px;font-size:1.7rem;}
@@ -210,28 +210,29 @@
   }
 
   /* ===== FOOTER ===== */
-  footer{background:var(--navy-deep);color:#8FA3A8;padding:34px 0;}
+  footer{background:#fff;color:var(--ink-soft);padding:34px 0;border-top:1px solid var(--line);}
   .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
-  .footer-row .brand-text{color:#fff;font-size:.95rem;}
-  .footer-row .brand-text span{color:var(--teal-light);}
+  .footer-row .brand-text{color:var(--navy);font-size:.95rem;}
+  .footer-row .brand-text span{color:var(--teal);}
   footer p.tag{font-size:.82rem;}
 
   .menu-toggle{
     display:none;flex-direction:column;justify-content:center;gap:5px;
     width:38px;height:38px;background:none;border:none;cursor:pointer;padding:0;
   }
-  .menu-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .25s ease,opacity .25s ease;}
+  .menu-toggle span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:transform .25s ease,opacity .25s ease;}
   .menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
   .menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
   .mobile-menu{
-    display:none;flex-direction:column;background:var(--navy-deep);
+    display:none;flex-direction:column;background:#fff;
     position:absolute;top:100%;left:0;right:0;padding:8px 24px 22px;
-    box-shadow:0 16px 32px -12px rgba(0,0,0,0.35);
+    box-shadow:0 16px 32px -12px rgba(11,46,79,0.18);
+    border-bottom:1px solid var(--line);
   }
   .mobile-menu.open{display:flex;}
-  .mobile-menu a{color:#DCE8EA;font-size:1rem;font-weight:500;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .mobile-menu a{color:var(--ink-soft);font-size:1rem;font-weight:500;padding:14px 0;border-bottom:1px solid var(--line);}
   .mobile-menu a:last-child{border-bottom:none;}
   .mobile-menu .mobile-cta{
     margin-top:12px;background:var(--teal);color:#fff;text-align:center;border-radius:999px;
@@ -259,7 +260,7 @@
       <div class="logo-badge"><img class="cms-logo" src="logo.png" alt="TEC-STAR Depuraciones"></div>
     </div>
     <nav class="links">
-      <a href="#quienes-somos">Quiénes somos</a>
+      <a href="#quienes-somos">¿Quiénes somos?</a>
       <a href="#servicios">Servicios</a>
       <a href="#por-que">Por qué elegirnos</a>
       <a href="#contacto">Contacto</a>
@@ -270,7 +271,7 @@
     </button>
   </div>
   <nav class="mobile-menu" id="mobile-menu">
-    <a href="#quienes-somos">Quiénes somos</a>
+    <a href="#quienes-somos">¿Quiénes somos?</a>
     <a href="#servicios">Servicios</a>
     <a href="#por-que">Por qué elegirnos</a>
     <a href="#contacto">Contacto</a>
@@ -283,7 +284,7 @@
     <div>
       <div class="eyebrow mono"><span class="dot"></span>Mantenimiento de PTAR · Costa Rica</div>
       <h1>Servicios profesionales de mantenimiento de plantas de tratamiento de aguas residuales</h1>
-      <p class="lead" id="hero-lead">Mantenimiento preventivo, correctivo y especializado para plantas de tratamiento de aguas residuales, con respuesta técnica rápida y cumplimiento normativo garantizado.</p>
+      <p class="lead" id="hero-lead">Mantenimiento preventivo, correctivo y especializado para plantas de tratamiento de aguas residuales y tanques de agua potable, con respuesta técnica rápida y cumplimiento normativo garantizado.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" id="hero-whatsapp" href="https://wa.me/50686394366" target="_blank" rel="noopener">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
@@ -302,14 +303,14 @@
   <div class="wrap intro-grid">
     <div class="intro-copy">
       <div class="section-head" style="margin-bottom:20px;">
-        <span class="mono">Quiénes somos</span>
+        <span class="mono">¿Quiénes somos?</span>
         <h2>Especialistas en el ciclo completo de tratamiento de aguas residuales.</h2>
       </div>
       <p id="intro-p1">En <strong>TEC-STAR Depuraciones</strong> ofrecemos servicios profesionales de mantenimiento preventivo y correctivo para plantas de tratamiento de aguas residuales, garantizando el funcionamiento eficiente, seguro y continuo de sus sistemas — desde la inspección diaria hasta la atención de emergencias.</p>
       <p id="intro-p2">Trabajamos con altos estándares técnicos para que su planta opere de forma eficiente, cumpliendo con las normativas ambientales y protegiendo el recurso hídrico.</p>
       <div class="stat-row">
         <div class="stat"><b>Preventivo</b><span>+ Correctivo</span></div>
-        <div class="stat"><b>24/7</b><span>Atención a fallas</span></div>
+        <div class="stat"><b>24/7</b><span>Atención de fallas</span></div>
         <div class="stat"><b>Min. Salud</b><span>Reporte operacional</span></div>
       </div>
     </div>
@@ -368,7 +369,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 10-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 005.4-5.4l-2.1 2.1a2 2 0 01-2.8-2.8z"/></svg>
         </div>
         <div>
-          <span class="tag mono" id="svc-2-tag">02 · Atención a fallas</span>
+          <span class="tag mono" id="svc-2-tag">02 · Atención de fallas</span>
           <h3 id="svc-2-title">Mantenimiento correctivo</h3>
           <ul class="service-list" id="svc-2-list">
             <li>Reparación de averías y fallas mecánicas</li>
@@ -434,7 +435,7 @@
 <section class="why" id="por-que">
   <div class="wrap">
     <div class="section-head">
-      <span class="mono">Por qué elegir TEC-STAR</span>
+      <span class="mono">¿Por qué elegir TEC-STAR?</span>
       <h2>Confianza técnica, respaldada por resultados.</h2>
     </div>
     <div class="why-grid">
@@ -484,7 +485,7 @@
     <div class="contact-form-note">
       <span class="mono">Contáctenos</span>
       <h2>Hablemos de su planta.</h2>
-      <p>Especialistas en mantenimiento preventivo y correctivo de plantas de tratamiento de aguas residuales. Servicio para industrias, comercios y residencias.</p>
+      <p>Especialistas en mantenimiento preventivo y correctivo de plantas de tratamiento de aguas residuales y tanques de agua potable. Servicio para industrias, comercios y residencias.</p>
       <div class="sector-tags">
         <span>Industrias</span>
         <span>Comercios</span>
