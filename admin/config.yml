@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Kacn1z-del/Tec-Star-depuraciones-
   branch: main                      # <-- cambiar si tu rama principal se llama distinto
-  base_url: https://tec-star-depuraciones-a1v1.vercel.app
+  base_url: https://tec-star-depuraciones.vercel.app
   auth_endpoint: api/auth
 
 media_folder: "images"
