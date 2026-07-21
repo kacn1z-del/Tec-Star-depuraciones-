@@ -1,11 +1,451 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Administrar contenido — TEC-STAR Depuraciones</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Administrar contenido — TEC-STAR Depuraciones</title>
+<style>
+  :root{
+    --navy-deep:#0A3D91;
+    --navy:#1E5FC7;
+    --teal:#14B8E8;
+    --teal-light:#6FD6F5;
+    --aqua-mist:#DCEEEC;
+    --paper:#F6F8F8;
+    --ink:#16242B;
+    --ink-soft:#4A5C63;
+    --amber:#E8A33D;
+    --line:rgba(11,46,79,0.14);
+    --radius:14px;
+    --danger:#D64545;
+    --ok:#1F9D63;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+  }
+  h1,h2,h3,.brand-text{font-family:'Space Grotesk','Inter',sans-serif;}
+
+  /* --- Pantalla de login --- */
+  #login-screen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .login-card{
+    width:100%;
+    max-width:360px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:32px 28px;
+    box-shadow:0 20px 40px -20px rgba(10,61,145,0.25);
+  }
+  .login-card h1{
+    font-size:1.3rem;color:var(--navy-deep);margin:0 0 4px;
+  }
+  .login-card p{
+    color:var(--ink-soft);font-size:.9rem;margin:0 0 22px;
+  }
+  label{
+    display:block;font-size:.82rem;font-weight:600;color:var(--ink-soft);margin-bottom:6px;
+  }
+  input[type=password], input[type=text], input[type=email], input[type=tel], textarea{
+    width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);
+    font-size:.95rem;font-family:inherit;background:var(--paper);color:var(--ink);
+  }
+  textarea{resize:vertical;min-height:70px;line-height:1.5;}
+  input:focus, textarea:focus{outline:2px solid var(--teal-light);outline-offset:1px;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 20px;border-radius:999px;border:none;cursor:pointer;
+    font-weight:600;font-size:.92rem;font-family:inherit;transition:transform .15s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--teal);color:#fff;width:100%;margin-top:18px;}
+  .btn-primary:hover{background:var(--navy);}
+  .btn-primary:disabled{opacity:.6;cursor:not-allowed;}
+  .btn-ghost{background:transparent;border:1px solid var(--line);color:var(--navy);}
+  .error-msg{
+    background:rgba(214,69,69,0.09);color:var(--danger);border:1px solid rgba(214,69,69,0.25);
+    padding:10px 12px;border-radius:10px;font-size:.85rem;margin-top:14px;display:none;
+  }
+
+  /* --- Panel principal --- */
+  #panel-screen{display:none;}
+  header.admin-header{
+    background:#fff;border-bottom:1px solid var(--line);
+    padding:16px 20px;display:flex;align-items:center;justify-content:space-between;
+    position:sticky;top:0;z-index:10;
+  }
+  header.admin-header .brand-text{color:var(--navy-deep);font-weight:700;font-size:1rem;}
+  header.admin-header .brand-text span{
+    display:block;font-family:monospace;font-size:.62rem;letter-spacing:.16em;color:var(--teal);
+  }
+  main{max-width:760px;margin:0 auto;padding:24px 18px 100px;}
+  .section-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;margin-bottom:20px;
+  }
+  .section-card h2{font-size:1.02rem;color:var(--navy-deep);margin:0 0 16px;}
+  .field{margin-bottom:16px;}
+  .field:last-child{margin-bottom:0;}
+  .grid-2{display:grid;grid-template-columns:1fr;gap:16px;}
+  @media(min-width:560px){.grid-2{grid-template-columns:1fr 1fr;}}
+
+  .service-block, .why-block{
+    border:1px dashed var(--line);border-radius:12px;padding:16px;margin-bottom:14px;
+    background:var(--paper);
+  }
+  .service-block h3, .why-block h3{
+    font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);margin:0 0 12px;
+  }
+  .items-list textarea{margin-bottom:8px;}
+  .item-row{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start;}
+  .item-row textarea{flex:1;min-height:44px;}
+  .item-row button{
+    flex-shrink:0;background:none;border:1px solid var(--line);color:var(--danger);
+    border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:1rem;
+  }
+  .add-item-btn{
+    background:none;border:1px dashed var(--teal);color:var(--navy);
+    border-radius:8px;padding:8px 14px;font-size:.82rem;cursor:pointer;font-weight:600;
+  }
+
+  .save-bar{
+    position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);
+    padding:14px 18px;display:flex;gap:12px;align-items:center;justify-content:space-between;
+    box-shadow:0 -10px 30px -20px rgba(10,61,145,0.3);
+  }
+  .save-bar .status{font-size:.82rem;color:var(--ink-soft);}
+  .status.ok{color:var(--ok);}
+  .status.error{color:var(--danger);}
+  .save-bar .btn-primary{width:auto;margin:0;padding:12px 26px;}
+
+  .toolbar-actions{display:flex;gap:10px;align-items:center;}
+  .toolbar-actions .btn{padding:8px 14px;font-size:.8rem;}
+
+  .loading{
+    display:flex;align-items:center;justify-content:center;min-height:60vh;color:var(--ink-soft);
+    font-size:.9rem;
+  }
+</style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- PANTALLA DE LOGIN -->
+  <div id="login-screen">
+    <div class="login-card">
+      <h1>Panel de administración</h1>
+      <p>TEC-STAR Depuraciones — ingresa la contraseña para editar el contenido del sitio.</p>
+      <form id="login-form">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required />
+        <button type="submit" class="btn btn-primary" id="login-btn">Ingresar</button>
+      </form>
+      <div class="error-msg" id="login-error"></div>
+    </div>
+  </div>
+
+  <!-- PANTALLA DEL PANEL (oculta hasta iniciar sesión) -->
+  <div id="panel-screen">
+    <header class="admin-header">
+      <div class="brand-text">TEC-STAR — Admin<span>PANEL DE CONTENIDO</span></div>
+      <div class="toolbar-actions">
+        <button class="btn btn-ghost" id="logout-btn">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <main id="loading-content" class="loading">Cargando contenido actual…</main>
+
+    <main id="form-content" style="display:none;">
+      <!-- Datos generales -->
+      <section class="section-card">
+        <h2>Datos generales</h2>
+        <div class="field">
+          <label for="hero_lead">Texto principal (hero)</label>
+          <textarea id="hero_lead"></textarea>
+        </div>
+        <div class="field">
+          <label for="intro_p1">Párrafo 1 (Quiénes somos)</label>
+          <textarea id="intro_p1"></textarea>
+        </div>
+        <div class="field">
+          <label for="intro_p2">Párrafo 2 (Quiénes somos)</label>
+          <textarea id="intro_p2"></textarea>
+        </div>
+        <div class="field">
+          <label for="footer_tag">Texto del pie de página</label>
+          <textarea id="footer_tag"></textarea>
+        </div>
+      </section>
+
+      <!-- Contacto -->
+      <section class="section-card">
+        <h2>Contacto</h2>
+        <div class="grid-2">
+          <div class="field">
+            <label for="phone">Teléfono</label>
+            <input type="text" id="phone" />
+          </div>
+          <div class="field">
+            <label for="whatsapp">WhatsApp (solo números, con código de país)</label>
+            <input type="text" id="whatsapp" />
+          </div>
+          <div class="field">
+            <label for="email">Correo</label>
+            <input type="email" id="email" />
+          </div>
+          <div class="field">
+            <label for="contact_name">Nombre de contacto</label>
+            <input type="text" id="contact_name" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="address">Dirección</label>
+          <input type="text" id="address" />
+        </div>
+      </section>
+
+      <!-- Servicios -->
+      <section class="section-card">
+        <h2>Servicios</h2>
+        <div id="services-container"></div>
+      </section>
+
+      <!-- Por qué elegirnos -->
+      <section class="section-card">
+        <h2>Por qué elegirnos</h2>
+        <div id="why-container"></div>
+      </section>
+    </main>
+
+    <div class="save-bar" id="save-bar" style="display:none;">
+      <span class="status" id="save-status"></span>
+      <button class="btn btn-primary" id="save-btn">Guardar cambios</button>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const loginScreen = document.getElementById('login-screen');
+  const panelScreen = document.getElementById('panel-screen');
+  const loginForm = document.getElementById('login-form');
+  const loginError = document.getElementById('login-error');
+  const loginBtn = document.getElementById('login-btn');
+  const logoutBtn = document.getElementById('logout-btn');
+  const loadingContent = document.getElementById('loading-content');
+  const formContent = document.getElementById('form-content');
+  const saveBar = document.getElementById('save-bar');
+  const saveBtn = document.getElementById('save-btn');
+  const saveStatus = document.getElementById('save-status');
+  const servicesContainer = document.getElementById('services-container');
+  const whyContainer = document.getElementById('why-container');
+
+  let siteData = null;
+
+  function showPanel(){
+    loginScreen.style.display = 'none';
+    panelScreen.style.display = 'block';
+    loadSiteData();
+  }
+
+  function showLogin(){
+    panelScreen.style.display = 'none';
+    loginScreen.style.display = 'flex';
+  }
+
+  // Revisa si ya hay una sesión activa (para no pedir login en cada recarga)
+  fetch('/api/admin-check').then(r => r.json()).then(data => {
+    if (data.authenticated) showPanel(); else showLogin();
+  }).catch(() => showLogin());
+
+  loginForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    loginError.style.display = 'none';
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Verificando…';
+    const password = document.getElementById('password').value;
+    try {
+      const resp = await fetch('/api/admin-login', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ password })
+      });
+      const data = await resp.json();
+      if (data.ok) {
+        showPanel();
+      } else {
+        loginError.textContent = data.error || 'Contraseña incorrecta.';
+        loginError.style.display = 'block';
+      }
+    } catch(err) {
+      loginError.textContent = 'Error de conexión. Intenta de nuevo.';
+      loginError.style.display = 'block';
+    } finally {
+      loginBtn.disabled = false;
+      loginBtn.textContent = 'Ingresar';
+    }
+  });
+
+  logoutBtn.addEventListener('click', async function(){
+    await fetch('/api/admin-logout', { method: 'POST' });
+    location.reload();
+  });
+
+  async function loadSiteData(){
+    loadingContent.style.display = 'flex';
+    formContent.style.display = 'none';
+    saveBar.style.display = 'none';
+    try {
+      const resp = await fetch('/content/site.json?_=' + Date.now());
+      siteData = await resp.json();
+      renderForm();
+      loadingContent.style.display = 'none';
+      formContent.style.display = 'block';
+      saveBar.style.display = 'flex';
+    } catch(err) {
+      loadingContent.textContent = 'No se pudo cargar el contenido actual.';
+    }
+  }
+
+  function renderForm(){
+    document.getElementById('hero_lead').value = siteData.hero_lead || '';
+    document.getElementById('intro_p1').value = siteData.intro_p1 || '';
+    document.getElementById('intro_p2').value = siteData.intro_p2 || '';
+    document.getElementById('footer_tag').value = siteData.footer_tag || '';
+    document.getElementById('phone').value = siteData.phone || '';
+    document.getElementById('whatsapp').value = siteData.whatsapp || '';
+    document.getElementById('email').value = siteData.email || '';
+    document.getElementById('contact_name').value = siteData.contact_name || '';
+    document.getElementById('address').value = siteData.address || '';
+
+    renderServices();
+    renderWhy();
+  }
+
+  function renderServices(){
+    servicesContainer.innerHTML = '';
+    (siteData.services || []).forEach(function(service, idx){
+      const block = document.createElement('div');
+      block.className = 'service-block';
+      block.innerHTML =
+        '<h3>Servicio ' + (idx+1) + '</h3>' +
+        '<div class="field"><label>Etiqueta</label><input type="text" class="svc-tag" value="' + escapeAttr(service.tag) + '" /></div>' +
+        '<div class="field"><label>Título</label><input type="text" class="svc-title" value="' + escapeAttr(service.title) + '" /></div>' +
+        '<div class="field"><label>Lista de puntos</label><div class="items-list svc-items"></div>' +
+        '<button type="button" class="add-item-btn" data-idx="' + idx + '">+ Agregar punto</button></div>';
+      servicesContainer.appendChild(block);
+
+      const itemsList = block.querySelector('.svc-items');
+      (service.items || []).forEach(function(item){
+        itemsList.appendChild(makeItemRow(item));
+      });
+
+      block.querySelector('.add-item-btn').addEventListener('click', function(){
+        itemsList.appendChild(makeItemRow(''));
+      });
+    });
+  }
+
+  function renderWhy(){
+    whyContainer.innerHTML = '';
+    (siteData.why || []).forEach(function(w, idx){
+      const block = document.createElement('div');
+      block.className = 'why-block';
+      block.innerHTML =
+        '<h3>Bloque ' + (idx+1) + '</h3>' +
+        '<div class="field"><label>Título</label><input type="text" class="why-title" value="' + escapeAttr(w.title) + '" /></div>' +
+        '<div class="field"><label>Texto</label><textarea class="why-text">' + escapeHtml(w.text) + '</textarea></div>';
+      whyContainer.appendChild(block);
+    });
+  }
+
+  function makeItemRow(value){
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    row.innerHTML =
+      '<textarea class="svc-item">' + escapeHtml(value) + '</textarea>' +
+      '<button type="button" title="Eliminar punto">✕</button>';
+    row.querySelector('button').addEventListener('click', function(){
+      row.remove();
+    });
+    return row;
+  }
+
+  function escapeAttr(str){
+    return (str || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+  }
+  function escapeHtml(str){
+    return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function collectFormData(){
+    const data = Object.assign({}, siteData);
+    data.hero_lead = document.getElementById('hero_lead').value;
+    data.intro_p1 = document.getElementById('intro_p1').value;
+    data.intro_p2 = document.getElementById('intro_p2').value;
+    data.footer_tag = document.getElementById('footer_tag').value;
+    data.phone = document.getElementById('phone').value;
+    data.whatsapp = document.getElementById('whatsapp').value;
+    data.email = document.getElementById('email').value;
+    data.contact_name = document.getElementById('contact_name').value;
+    data.address = document.getElementById('address').value;
+
+    const serviceBlocks = servicesContainer.querySelectorAll('.service-block');
+    data.services = Array.from(serviceBlocks).map(function(block){
+      return {
+        tag: block.querySelector('.svc-tag').value,
+        title: block.querySelector('.svc-title').value,
+        items: Array.from(block.querySelectorAll('.svc-item')).map(function(t){ return t.value; }).filter(Boolean)
+      };
+    });
+
+    const whyBlocks = whyContainer.querySelectorAll('.why-block');
+    data.why = Array.from(whyBlocks).map(function(block){
+      return {
+        title: block.querySelector('.why-title').value,
+        text: block.querySelector('.why-text').value
+      };
+    });
+
+    return data;
+  }
+
+  saveBtn.addEventListener('click', async function(){
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Guardando…';
+    saveStatus.textContent = '';
+    saveStatus.className = 'status';
+    try {
+      const updated = collectFormData();
+      const resp = await fetch('/api/admin-save', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(updated)
+      });
+      const result = await resp.json();
+      if (result.ok) {
+        siteData = updated;
+        saveStatus.textContent = '✓ Cambios guardados. El sitio se actualizará en unos minutos.';
+        saveStatus.className = 'status ok';
+      } else {
+        saveStatus.textContent = result.error || 'No se pudo guardar.';
+        saveStatus.className = 'status error';
+      }
+    } catch(err) {
+      saveStatus.textContent = 'Error de conexión al guardar.';
+      saveStatus.className = 'status error';
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Guardar cambios';
+    }
+  });
+})();
+</script>
 </body>
 </html>
