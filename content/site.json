@@ -1,6 +1,6 @@
 {
   "logo": "/logo.png",
-  "hero_lead": "Mantenimiento preventivo, correctivo y especializado para plantas de tratamiento de aguas residuales, con respuesta técnica rápida y cumplimiento normativo garantizado.",
+  "hero_lead": "Mantenimiento preventivo, correctivo y especializado para plantas de tratamiento de aguas residuales y tanques de agua potable, con respuesta técnica rápida y cumplimiento normativo garantizado.",
   "intro_p1": "Servicios profesionales de mantenimiento de plantas de tratamiento de aguas residuales.",
   "intro_p2": "Trabajamos con altos estándares técnicos para que su planta opere de forma eficiente, cumpliendo con las normativas ambientales y protegiendo el recurso hídrico.",
   "phone": "8639-4366",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "tag": "02 · Atención a fallas",
+      "tag": "02 · Atención de fallas",
       "title": "Mantenimiento correctivo",
       "items": [
         "Reparación de averías y fallas mecánicas",
