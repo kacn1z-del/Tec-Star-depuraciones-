@@ -216,17 +216,6 @@
   .footer-row .brand-text span{color:var(--teal-light);}
   footer p.tag{font-size:.82rem;}
 
-  @media (max-width:920px){
-    .hero-grid{grid-template-columns:1fr;}
-    .hero-diagram{order:-1;max-width:280px;}
-    .intro-grid,.contact-grid{grid-template-columns:1fr;}
-    .why-grid{grid-template-columns:1fr;}
-    .service-list{grid-template-columns:1fr;}
-    nav.links{display:none;}
-    .nav-cta{display:none;}
-    .menu-toggle{display:flex;}
-  }
-
   .menu-toggle{
     display:none;flex-direction:column;justify-content:center;gap:5px;
     width:38px;height:38px;background:none;border:none;cursor:pointer;padding:0;
@@ -247,6 +236,17 @@
   .mobile-menu .mobile-cta{
     margin-top:12px;background:var(--teal);color:#fff;text-align:center;border-radius:999px;
     padding:12px 18px;font-weight:600;border-bottom:none;
+  }
+
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-diagram{order:-1;max-width:280px;}
+    .intro-grid,.contact-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .service-list{grid-template-columns:1fr;}
+    nav.links{display:none;}
+    .nav-cta{display:none;}
+    .menu-toggle{display:flex;}
   }
   header.site{position:relative;}
 </style>
@@ -595,4 +595,3 @@ fetch('content/site.json?_=' + Date.now())
 
 </body>
 </html>
-
