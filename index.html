@@ -223,7 +223,32 @@
     .why-grid{grid-template-columns:1fr;}
     .service-list{grid-template-columns:1fr;}
     nav.links{display:none;}
+    .nav-cta{display:none;}
+    .menu-toggle{display:flex;}
   }
+
+  .menu-toggle{
+    display:none;flex-direction:column;justify-content:center;gap:5px;
+    width:38px;height:38px;background:none;border:none;cursor:pointer;padding:0;
+  }
+  .menu-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .25s ease,opacity .25s ease;}
+  .menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{
+    display:none;flex-direction:column;background:var(--navy-deep);
+    position:absolute;top:100%;left:0;right:0;padding:8px 24px 22px;
+    box-shadow:0 16px 32px -12px rgba(0,0,0,0.35);
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{color:#DCE8EA;font-size:1rem;font-weight:500;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu .mobile-cta{
+    margin-top:12px;background:var(--teal);color:#fff;text-align:center;border-radius:999px;
+    padding:12px 18px;font-weight:600;border-bottom:none;
+  }
+  header.site{position:relative;}
 </style>
 </head>
 <body>
@@ -234,12 +259,23 @@
       <div class="logo-badge"><img class="cms-logo" src="logo.png" alt="TEC-STAR Depuraciones"></div>
     </div>
     <nav class="links">
+      <a href="#quienes-somos">Quiénes somos</a>
       <a href="#servicios">Servicios</a>
       <a href="#por-que">Por qué elegirnos</a>
       <a href="#contacto">Contacto</a>
     </nav>
     <a class="nav-cta" id="nav-phone" href="tel:+50686394366">Llamar ahora</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+  <nav class="mobile-menu" id="mobile-menu">
+    <a href="#quienes-somos">Quiénes somos</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#por-que">Por qué elegirnos</a>
+    <a href="#contacto">Contacto</a>
+    <a class="mobile-cta" id="mobile-nav-phone" href="tel:+50686394366">Llamar ahora</a>
+  </nav>
 </header>
 
 <section class="hero">
@@ -262,7 +298,7 @@
   </div>
 </section>
 
-<section class="intro">
+<section class="intro" id="quienes-somos">
   <div class="wrap intro-grid">
     <div class="intro-copy">
       <div class="section-head" style="margin-bottom:20px;">
@@ -539,6 +575,22 @@ fetch('content/site.json?_=' + Date.now())
     });
   })
   .catch(function(){ /* si no hay content/site.json, se muestra el contenido original */ });
+
+  // Menú hamburguesa (móvil)
+  var menuToggle = document.getElementById('menu-toggle');
+  var mobileMenu = document.getElementById('mobile-menu');
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function(){
+      var isOpen = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        mobileMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 </script>
 
 </body>
