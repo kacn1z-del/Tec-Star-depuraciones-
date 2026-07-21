@@ -52,6 +52,16 @@
         "Refrendo de Colegio de Químicos",
         "Elaboración y presentación de reporte operacional de aguas residuales al Ministerio de Salud"
       ]
+    },
+    {
+      "tag": "05 · Agua potable",
+      "title": "Mantenimiento preventivo y correctivo de tanques de agua potable",
+      "items": [
+        "Limpieza y desinfección de tanques",
+        "Inspección de estructura e impermeabilización",
+        "Revisión de válvulas y sistema de llenado",
+        "Análisis de calidad del agua almacenada"
+      ]
     }
   ],
   "why": [
