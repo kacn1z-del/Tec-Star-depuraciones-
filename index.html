@@ -208,6 +208,13 @@
     font-size:.76rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em;
     border:1px solid var(--line);padding:6px 12px;border-radius:999px;color:var(--navy);
   }
+  .social-row{display:flex;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);}
+  .social-btn{
+    width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:#fff;border:1px solid var(--line);color:var(--navy);transition:background .2s,color .2s,border-color .2s;
+  }
+  .social-btn svg{width:19px;height:19px;}
+  .social-btn:hover{background:var(--teal);border-color:var(--teal);color:#fff;}
 
   /* ===== FOOTER ===== */
   footer{background:#fff;color:var(--ink-soft);padding:34px 0;border-top:1px solid var(--line);}
@@ -510,6 +517,14 @@
       <div class="contact-row">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span id="contact-address">San José, Moravia — Costa Rica</span>
+      </div>
+      <div class="social-row">
+        <a class="social-btn" href="https://www.facebook.com/share/1KM3zeGri6/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook de TEC-STAR Depuraciones">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.75l.41-3.2H13.5V7.4c0-.93.26-1.56 1.59-1.56h1.7V2.98A22.7 22.7 0 0014.6 2.9c-2.35 0-3.96 1.43-3.96 4.07v2.63H8v3.2h2.64V21h2.86z"/></svg>
+        </a>
+        <a class="social-btn" href="https://wa.me/50686394366" target="_blank" rel="noopener" aria-label="WhatsApp de TEC-STAR Depuraciones">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        </a>
       </div>
     </div>
   </div>
